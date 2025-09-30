@@ -4,6 +4,8 @@
 <head>
   <title>Ubucon Europe 2019 Presentation</title>
   <meta charset="utf-8">
+  <meta http-equiv="refresh" content="900"><!-- hack -->
+
   <style>
     @import url(style.css?1);
   </style>
@@ -38,26 +40,25 @@ template: title
 name: main-title
 
 .content[
-# <span id="placeholder-current-title">Welcome Ubucon Europe 2019<!--Title placeholder--></span>
+# <span id="placeholder-current-title">Festa do Software Livre<!--Title placeholder--></span>
 
-.small[presentation by: <span id="placeholder-current-speaker"><!--Speaker on Ubucon Europe 2019--></span>]
+.small[<span id="placeholder-current-speaker"><!--Speaker--></span>]
 ]
 
 
 .room-info[
-.center[<b><span id="placeholder-room-name"></span></b>]
-
-<b>Starting at:</b> <span id="placeholder-current-time"><!--Time placeholder--></span>
+.center[
+<b><span id="placeholder-room-name"></span>
+|
+<span id="placeholder-current-time"><!--Time placeholder--></span>
+</b><br>
+]
 
 .small[
-<table>
-  <tr>
-    <td><b>Up&nbsp;Next:</b></td>
-    <td><span id="placeholder-next-title"><!--Talk placeholder--></span></td>
-  </tr>
-  <tr><td></td><td><span id="placeholder-next-speaker"></span></td></tr>
-  <tr><td></td><td><span id="placeholder-next-time"></span></td></tr>
-</table>
+<b>A seguir | Up Next:</b><br>
+&nbsp;&nbsp;&nbsp;<span id="placeholder-next-title"></span><br>
+&nbsp;&nbsp;&nbsp;<span id="placeholder-next-speaker"></span><br>
+&nbsp;&nbsp;&nbsp;<span id="placeholder-next-time"></span><br>
 ]
 ]
 
@@ -65,28 +66,9 @@ name: main-title
 
 ---
 
-# Diamond Sponsor
-
-.center[
-<img src="img/ubuntu_black-orange_st_hex-400x400.png">
-]
-
----
-
-# Gold Sponsors
-
-<br><br><br>
-<img style="float:left;width:200px;padding:40px;" src="img/ansol.png">
-<img style="float:left;width:250px;padding:40px;" src="img/angulosolido.jpg">
-<img style="float:left;width:300px;padding:40px;" src="img/libretrend.png">
-
-
----
-
-background-image: url(img/bg-partners.png)
-
-# Silver Sponsor & Partners
-
+background-image: url(img/bg-sponsors.png)
+<br><br>
+# Obrigado / Thank you
 
     </textarea>
   <!--
@@ -124,10 +106,10 @@ background-image: url(img/bg-partners.png)
       document.getElementById('placeholder-current-speaker').innerHTML = objData.speaker;
       document.getElementById('placeholder-current-time').innerHTML  = objData.time;
       document.getElementById('placeholder-next-title').innerHTML  = objData.n_title;
-      document.getElementById('placeholder-next-speaker').innerHTML  = objData.n_speaker == "" ? "" : "by: "+objData.n_speaker;
+      document.getElementById('placeholder-next-speaker').innerHTML  = objData.n_speaker == "" ? "" : objData.n_speaker;
       document.getElementById('placeholder-next-time').innerHTML  =  objData.n_time == "" ? "" : "@ "+objData.n_time;
       document.getElementById('placeholder-auto-loop-sec').innerHTML = objData.auto_loop_sec;
-      
+
       // Handle auto-loop
       objData.auto_loop_sec == 0 ? isAutoLooping = false : isAutoLooping = true;
       for (i=0, len=timeoutIDs.length; i < len; i++){
@@ -155,7 +137,7 @@ background-image: url(img/bg-partners.png)
       }
     }
 
-    
+
     function moveSlides(objData) {
       var slideCount = slideshow.getSlideCount()-1;
       var currentSlide = slideshow.getCurrentSlideIndex();
@@ -171,16 +153,16 @@ background-image: url(img/bg-partners.png)
           if (currentSlide == slideCount) {
             slideshow.gotoFirstSlide();
           }
-          else { 
-            slideshow.gotoNextSlide(); 
+          else {
+            slideshow.gotoNextSlide();
           }
           break;
         case "previous":
           if (currentSlide == 0) {
             slideshow.gotoLastSlide();
           }
-          else { 
-            slideshow.gotoPreviousSlide(); 
+          else {
+            slideshow.gotoPreviousSlide();
           }
           break;
         case "go-to":
@@ -221,29 +203,29 @@ background-image: url(img/bg-partners.png)
       es.onerror = function(e) {
         console.log("EventSource failed. Trying to reconnect");
         delete es;
-        setTimeout(function(){ startEventSource(); }, 5000);        
+        setTimeout(function(){ startEventSource(); }, 5000);
       };
     }
 
     // Update template with GET request (first time)
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
+    xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == 200){
             objData = JSON.parse(xmlHttp.responseText);
             updateTemplate(objData);
         }
     }
-    xmlHttp.open("GET", "/room-info/"+roomNumber, true); // true for asynchronous 
+    xmlHttp.open("GET", "/room-info/"+roomNumber, true); // true for asynchronous
     xmlHttp.send(null);
 
     // Update template with SSE
     startEventSource();
-    
+
     // Loop through slides
     function slideshowCarousel(varObject) {
       var slideCount = varObject.getSlideCount()-1;
       var currentSlide = varObject.getCurrentSlideIndex();
-      
+
       if (isAutoLooping){
         if (currentSlide == 0 && firstSlideDelayCount < 2){ // the first slide lasts 3 times more
           firstSlideDelayCount+=1;
@@ -253,8 +235,8 @@ background-image: url(img/bg-partners.png)
           if (currentSlide == slideCount) {
             varObject.gotoFirstSlide();
           }
-          else { 
-            varObject.gotoNextSlide(); 
+          else {
+            varObject.gotoNextSlide();
           }
         }
         timeoutIDs.push(setTimeout(function () {slideshowCarousel(slideshow)}, document.getElementById('placeholder-auto-loop-sec').innerHTML*1000));
@@ -278,7 +260,6 @@ background-image: url(img/bg-partners.png)
       timeoutIDs.push(setTimeout(function () {slideshowCarousel(slideshow)}, document.getElementById('placeholder-auto-loop-sec').innerHTML*1000));
       }
     }
-
   </script>
 
 </html>

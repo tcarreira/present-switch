@@ -1,41 +1,46 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Ubuntu+Mono:400,400i,700,700i|Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=latin-ext');
+@import url("https://festa2025.softwarelivre.eu/css/fonts.css");
 
-body {
-  font-family: 'Ubuntu', sans-serif;
-  line-height: 1.5; 
+html {
+  font-family: "Sofia Sans", "apple-system", "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "League Gothic", "apple-system", "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+pre{
+  font-family: "Consolas", "Monaco", Courier, monospace;
+  font-size: 1em;
+}
+
 h1 {
-  font-weight: bold;
-} 
+  font-weight: 800;
+}
 h2, h3 {
   font-weight: normal;
 }
+
 .remark-slide-content {
-  font-size: 25px; 
+  font-size: 25px;
   background-image: url('img/template/bg-slides.png');
-  background-size: contain; 
+  background-size: contain;
 }
 .remark-slide-content h1 {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 45px; 
-  color: #E95420;
+  font-size: 45px;
+  color: #243571;
 }
 .remark-slide-content h2 {
-  font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 35px; 
-  color: #ED764D;
+  font-size: 35px;
+  color: #398FC7;
 }
 .remark-slide-content h3 {
-  font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 25px; 
-  color: #AEA79F;
+  font-size: 25px;
+  color: #398FC7;
 }
 
 .remark-slide-number {
   left: 10px;
   bottom: 6px;
   right: auto;
-  color: #FBDDD2;
+  color: #CAEBF3;
   opacity: 1.8;
 }
 .title .remark-slide-number{
@@ -46,31 +51,28 @@ img {
   max-width: 95%;
 }
 p li {
-  line-height: 1.5; 
+  line-height: 1.5;
 }
 .remark-notes li {
-  line-height: 1.1; 
+  line-height: 1.1;
 }
 
-code {
-  font-family: 'Ubuntu Mono', monospace;
-}
 .remark-code ,
 .hljs-default .hljs {
-  font-size: 25px; 
+  font-size: 25px;
   border-radius: 5px;
   display: block;
   padding: .5em;
   overflow-x: auto;
-  background: #E2E0DD;
+  background: #CAEBF3;
   color: #111111;
 }
 .remark-inline-code {
-  background: #E2E0DD;
+  background: #CAEBF3;
   color: #111111;
 }
 .remark-code-line-highlighted {
-  color: #EAE9E7;
+  color: #CAEBF3;
   background-color: #6B4C61;
 }
 
@@ -84,22 +86,22 @@ code {
 .title{
   vertical-align: middle;
   background-image: url('img/template/bg-title.png');
-  background-size: contain; 
+  background-size: contain;
   text-align: right;
 }
 .title .content{
-  width: 70%;
-  float: right;
-  text-align: right;
+  width: 100%;
+  float: center;
+  text-align: center;
 }
 .title h1 {
-  font-size: 60px; 
+  font-size: 60px;
 }
 .title h2 {
-  font-size: 50px; 
+  font-size: 50px;
 }
 .title h3 {
-  font-size: 40px; 
+  font-size: 40px;
 }
 
 .pic img {
@@ -118,7 +120,7 @@ code {
 
 .impact {
   background-image: url('img/template/bg-impact.png');
-  background-size: contain; 
+  background-size: contain;
 }
 .impact .content {
   width: 75%;
@@ -130,12 +132,12 @@ code {
 }
 
 .inverse {
-  background: #5E2750;
-  color: #eee;
+  background: #243571;
+  color: #CAEBF3;
   text-shadow: 0 0 20px #2C001E;
 }
 .inverse h1, .inverse h2 {
-  color: #eee;
+  color: #CAEBF3;
   line-height: 1.1em;
   /* background-color: #2C001E; */
 }
@@ -185,17 +187,18 @@ code {
   position: fixed;
   bottom: 15px;
   left: 15px;
-  background-color: #2C001E99;
+  background-color: #243571BB;
   border-radius: 40px;
   min-width: 300px;
-  max-width: 750px;
+  max-width: 450px;
   font-size: 22px;
   text-align: left;
-  color: #ffffff;
-  line-height: 1.2; 
+  color: #CAEBF3;
+  line-height: 1.2;
+  padding: 0px 15px 0px 15px;
 }
 .room-info > p {
-  margin: 25px 25px 25px 100px;
+  margin: 15px 15px 15px 15px;
   text-indent: -75px;
 }
 .room-info table {
