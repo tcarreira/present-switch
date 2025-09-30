@@ -2,11 +2,11 @@
 <html>
 
 <head>
-  <title>Ubucon Europe 2019 Presentations - Admin</title>
+  <title>FSL2025 - Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <style>
-  
+
   .autoloop {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -36,30 +36,30 @@
 <table>
   <tr>
     <td class="clickme">
-      <input 
+      <input
         class="autoloop"
-        id="form-toggle-autoloop" 
-        type="button" 
+        id="form-toggle-autoloop"
+        type="button"
         value="&#8634; Toggle Auto-Loop &#8634;"
-        onclick="sendEvent('loop');" 
+        onclick="sendEvent('loop');"
       />
     </td>
   </tr><tr>
     <td class="clickme">
-      <input 
-        id="form-next-slide" 
-        type="button" 
+      <input
+        id="form-next-slide"
+        type="button"
         value="&rarr; Next Slide &rarr;"
-        onclick="sendEvent('next');" 
+        onclick="sendEvent('next');"
       />
     </td>
   </tr><tr>
     <td class="clickme">
-      <input 
-        id="form-previous-slide" 
-        type="button" 
+      <input
+        id="form-previous-slide"
+        type="button"
         value="&larr; Previous Slide &larr;"
-        onclick="sendEvent('previous');" 
+        onclick="sendEvent('previous');"
       />
     </td>
   </tr>
@@ -67,7 +67,7 @@
 
 <br><br><br>
 
-<form id="updateForm" method="POST" action="update">
+<form id="updateForm" method="POST" action="update" onsubmit="sendEvent('submit');">
 <table class="formul">
   <tr>
     <td>Room:</td>
@@ -103,7 +103,7 @@
   </tr>
   <tr>
     <td colspan="2" style="text-align: center">
-      <input id="form-update-button" type="button" value="==== Update ====" onclick="sendEvent('submit');" />
+      <input id="form-update-button" type="submit" value="==== Update ====" />
     </td>
   </tr>
 </table>
@@ -133,13 +133,13 @@
   // Update template with GET request (first time)
   function requestUpdate(){
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
+    xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == 200){
             objData = JSON.parse(xmlHttp.responseText);
             updateTemplate(objData);
         }
     }
-    xmlHttp.open("GET", "/room-info/"+roomNumber, true); // true for asynchronous 
+    xmlHttp.open("GET", "/room-info/"+roomNumber, true); // true for asynchronous
     xmlHttp.send(null);
   };
   requestUpdate();
