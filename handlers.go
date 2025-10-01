@@ -260,10 +260,11 @@ func handleRoomInfoSync(s *sse.Server) http.Handler {
 			}
 		}()
 
-		re := regexp.MustCompile(`^(/room-info/([0-9]+))/?.*`) // 3 groups
+		re := regexp.MustCompile(`^(/room-info/([0-9]+))/?([a-zA-Z0-9]+)?/?.*`) // 3 or 4 groups
 		reMatch := re.FindStringSubmatch(r.URL.Path)
+		log.Println(reMatch)
 
-		if len(reMatch) == 3 {
+		if len(reMatch) >= 3 {
 			// prefix := reMatch[1]
 			roomNumberStr := reMatch[2]
 
@@ -273,13 +274,30 @@ func handleRoomInfoSync(s *sse.Server) http.Handler {
 				return
 			}
 
-			// If there is a persisted entry for this room, use it
-			if roomInfo, err := ReadRoomInfo(db, roomNumber); err == nil {
+			roomInfo, err := ReadRoomInfo(db, roomNumber)
+			if err != nil {
+				return
+			}
+
+			if reMatch[3] == "" {
 				if roomInfoJSON, err2 := json.Marshal(roomInfo); err2 == nil {
 					w.WriteHeader(200)
 					w.Header().Set("Content-Type", "application/json")
 					w.Write(roomInfoJSON)
 				}
+				return
+			}
+
+			w.WriteHeader(200)
+			w.Header().Set("Content-Type", "text/plain")
+			subPath := strings.ToLower(reMatch[3])
+			switch subPath {
+			case "room":
+				w.Write([]byte(roomInfo.RoomName))
+			case "title":
+				w.Write([]byte(roomInfo.CurrentTitle))
+			case "speaker":
+				w.Write([]byte(roomInfo.CurrentSpeaker))
 			}
 		}
 	})
