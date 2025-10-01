@@ -49,16 +49,15 @@ name: main-title
 .room-info[
 .center[
 <b><span id="placeholder-room-name"></span>
-|
 <span id="placeholder-current-time"><!--Time placeholder--></span>
 </b><br>
 ]
 
 .small[
-<b>A seguir | Up Next:</b><br>
-&nbsp;&nbsp;&nbsp;<span id="placeholder-next-title"></span><br>
-&nbsp;&nbsp;&nbsp;<span id="placeholder-next-speaker"></span><br>
-&nbsp;&nbsp;&nbsp;<span id="placeholder-next-time"></span><br>
+<b><span id="placeholder-upnext"></span></b>
+&nbsp;&nbsp;&nbsp;<span id="placeholder-next-title"></span>
+&nbsp;&nbsp;&nbsp;<span id="placeholder-next-speaker"></span>
+&nbsp;&nbsp;&nbsp;<span id="placeholder-next-time"></span>
 ]
 ]
 
@@ -66,9 +65,20 @@ name: main-title
 
 ---
 
-background-image: url(img/bg-sponsors.png)
-<br><br>
-# Obrigado / Thank you
+background-image: url(img/slides_sponsor_1.png)
+
+---
+
+background-image: url(img/slides_sponsor_2.png)
+
+---
+
+background-image: url(img/slides_sponsor_3.png)
+
+---
+
+background-image: url(img/slides_sponsor_4.png)
+
 
     </textarea>
   <!--
@@ -104,9 +114,10 @@ background-image: url(img/bg-sponsors.png)
       document.getElementById('placeholder-room-name').innerHTML = objData.room;
       document.getElementById('placeholder-current-title').innerHTML = objData.title;
       document.getElementById('placeholder-current-speaker').innerHTML = objData.speaker;
-      document.getElementById('placeholder-current-time').innerHTML  = objData.time;
-      document.getElementById('placeholder-next-title').innerHTML  = objData.n_title;
-      document.getElementById('placeholder-next-speaker').innerHTML  = objData.n_speaker == "" ? "" : objData.n_speaker;
+      document.getElementById('placeholder-current-time').innerHTML  = objData.time == "" ? "" : " | "+objData.time;
+      document.getElementById('placeholder-upnext').innerHTML  = objData.n_title == "" ? "" : "A seguir | Up Next:<br>";
+      document.getElementById('placeholder-next-title').innerHTML  = objData.n_title == "" ? "" : objData.n_title + "<br>";
+      document.getElementById('placeholder-next-speaker').innerHTML  = objData.n_speaker == "" ? "" : objData.n_speaker + "<br>";
       document.getElementById('placeholder-next-time').innerHTML  =  objData.n_time == "" ? "" : "@ "+objData.n_time;
       document.getElementById('placeholder-auto-loop-sec').innerHTML = objData.auto_loop_sec;
 
